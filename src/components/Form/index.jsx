@@ -1,9 +1,10 @@
+import { useState } from 'react'
 import Button from '../Button';
 import DropDown from '../DropDown';
 import TextArea from '../TextArea';
 import './Form.css'
 
-const Form = () => {
+const Form = (props) => {
     const times = [
         'Programação',
         'Front-End',
@@ -14,19 +15,50 @@ const Form = () => {
         'Inovação e Gestão'
     ]
 
+    const [name, setName] = useState('')
+    const [position, setPosition] = useState('')
+    const [image, setImage] = useState('')
+    const [time, setTime] = useState('')
+
     const saving = (event) => {
         event.preventDefault()
-        console.log("Formulario foi submetido")
+        props.registeredUser({
+            name, position, image, time
+        })
     }
 
     return (
         <section className='form'>
             <form onSubmit={saving}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
-                <TextArea required={true} label="Nome" placeholder="Digite seu nome"/>
-                <TextArea required={true} label="Cargo" placeholder="Digite o seu cargo"/>
-                <TextArea label="Imagem" placeholder="Digite o endereço da imagem"/>
-                <DropDown required={true} label="Time" itens={times}/>
+                <TextArea 
+                    required={true} 
+                    label="Nome:" 
+                    placeholder="Digite seu nome"
+                    value={name}
+                    changed={value => setName(value)}
+                />
+                <TextArea 
+                    required={true} 
+                    label="Cargo:" 
+                    placeholder="Digite o seu cargo"
+                    value={position}
+                    changed={value => setPosition(value)}
+                />
+                <TextArea  
+                    label="Imagem:" 
+                    placeholder="Digite o endereço da imagem"
+                    value={image}
+                    changed={value => setImage(value)}
+                />
+                <DropDown 
+                    required={true} 
+                    label="Equipe:" 
+                    itens={times}
+                    value={time}
+                    changed={value => setTime(value)}
+
+                />
                 <Button>
                     Criar Card
                 </Button>
