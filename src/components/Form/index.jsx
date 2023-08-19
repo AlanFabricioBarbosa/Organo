@@ -5,16 +5,6 @@ import TextArea from '../TextArea';
 import './Form.css'
 
 const Form = (props) => {
-    const times = [
-        'Programação',
-        'Front-End',
-        'Data Science',
-        'Devops',
-        'Ux e Design',
-        'Mobile',
-        'Inovação e Gestão'
-    ]
-
     const [name, setName] = useState('')
     const [position, setPosition] = useState('')
     const [image, setImage] = useState('')
@@ -54,7 +44,7 @@ const Form = (props) => {
                 <DropDown 
                     required={true} 
                     label="Equipe:" 
-                    itens={times}
+                    itens={props.times}
                     value={time}
                     changed={value => setTime(value)}
 
